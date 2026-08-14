@@ -10,4 +10,11 @@ dependencies {
 
     // Architectury API. This is optional, and you can comment it out if you don't need it.
     modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
+
+    // FTB Library
+    modCompileOnly "curse.maven:ftb-library-fabric-438495:$rootProject.ftb_library_id_fabric"
+    //FTB Teams
+    modCompileOnly "curse.maven:ftb-teams-fabric-438497:$rootProject.ftb_teams_id_fabric"
+    // FTB Quests
+    modCompileOnly "curse.maven:ftb-quests-fabric-438496:$rootProject.ftb_quests_id_fabric"
 }
