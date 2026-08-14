@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+issueTrackerURL = "https://github.com/Stalemated/quests_teams_fixes/issuess"
+license = "MIT"
 
 [[mods]]
 modId = "quests_teams_fixes"
 version = "${version}"
 displayName = "Quests & Teams Fixes"
-authors = "Me!"
+authors = "Stalemated"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+Completely disables FTB Teams, disbands any existing teams, and fixes some bugs from FTB Quests.
 '''
 #logoFile = ""
 
@@ -31,5 +31,26 @@ side = "BOTH"
 modId = "architectury"
 mandatory = true
 versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.quests_teams_fixes]]
+modId = "ftbquests"
+mandatory = true
+versionRange = "[2001.4.18,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.quests_teams_fixes]]
+modId = "ftbteams"
+mandatory = true
+versionRange = "[2001.3.2,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.quests_teams_fixes]]
+modId = "ftblibrary"
+mandatory = true
+versionRange = "[2001.2.13,)"
 ordering = "AFTER"
 side = "BOTH"

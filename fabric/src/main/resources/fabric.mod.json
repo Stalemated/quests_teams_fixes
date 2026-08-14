@@ -3,23 +3,20 @@
   "id": "quests_teams_fixes",
   "version": "${version}",
   "name": "Quests & Teams Fixes",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Completely disables FTB Teams, disbands any existing teams, and fixes some bugs from FTB Quests.",
   "authors": [
-    "Me!"
+    "Stalemated"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Stalemated/quests_teams_fixes",
+    "issues": "https://github.com/Stalemated/quests_teams_fixes/issues"
   },
-  "license": "CC0-1.0",
-  "icon": "assets/quests_teams_fixes/icon.png",
+  "license": "MIT",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.stalemated.qtfixes.fabric.ExampleModFabric"
-    ],
-    "client": [
-      "com.stalemated.qtfixes.fabric.client.ExampleModFabricClient"
+      "com.stalemated.qtfixes.fabric.QuestsAndTeamsFixesFabric"
     ]
   },
   "mixins": [
@@ -30,9 +27,9 @@
     "minecraft": "~1.20.1",
     "java": ">=17",
     "architectury": ">=9.2.14",
-    "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "fabric-api": "*",
+    "ftbquests": ">=2001.4.18",
+    "ftbteams": ">=2001.3.2",
+    "ftblibrary": ">=2001.2.13"
   }
 }
