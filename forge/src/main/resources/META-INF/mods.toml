@@ -12,6 +12,7 @@ description = '''
 Completely disables FTB Teams, disbands any existing teams, and fixes some bugs from FTB Quests.
 '''
 logoFile = "META-INF/quests_teams_fixes_small.png"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/quests-teams-fixes"
 
 [[dependencies.quests_teams_fixes]]
 modId = "forge"
