@@ -1,6 +1,6 @@
 package com.stalemated.qtfixes.mixin;
 
-import com.stalemated.qtfixes.utils.QuestCompletionFixer;
+import com.stalemated.qtfixes.completion.QuestCompletionFixer;
 import dev.ftb.mods.ftbquests.events.QuestProgressEventData;
 import dev.ftb.mods.ftbquests.quest.Quest;
 import org.spongepowered.asm.mixin.Mixin;
