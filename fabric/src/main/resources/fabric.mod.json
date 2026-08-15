@@ -12,7 +12,7 @@
     "issues": "https://github.com/Stalemated/quests_teams_fixes/issues"
   },
   "license": "MIT",
-  "icon": "icon.png",
+  "icon": "quests_teams_fixes_small.png",
   "environment": "*",
   "entrypoints": {
     "main": [

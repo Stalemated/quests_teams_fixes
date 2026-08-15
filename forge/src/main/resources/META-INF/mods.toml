@@ -11,7 +11,7 @@ authors = "Stalemated"
 description = '''
 Completely disables FTB Teams, disbands any existing teams, and fixes some bugs from FTB Quests.
 '''
-#logoFile = ""
+logoFile = "META-INF/quests_teams_fixes_small.png"
 
 [[dependencies.quests_teams_fixes]]
 modId = "forge"
