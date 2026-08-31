@@ -3,13 +3,14 @@
     "package": "com.stalemated.qtfixes.mixin",
     "compatibilityLevel": "JAVA_17",
     "minVersion": "0.8",
+    "plugin": "com.stalemated.qtfixes.mixin.compat.QTFMixinPlugin",
     "client": [
     ],
     "mixins": [
-        "FTBTeamsCommandsMixin",
-        "QuestMixin",
-        "SidebarButtonManagerMixin",
-        "TeamManagerImplMixin"
+        "compat.ftbteams.FTBTeamsCommandsMixin",
+        "compat.ftbquests.QuestMixin",
+        "compat.ftblibrary.SidebarButtonManagerMixin",
+        "compat.ftbteams.TeamManagerImplMixin"
     ],
     "injectors": {
         "defaultRequire": 1

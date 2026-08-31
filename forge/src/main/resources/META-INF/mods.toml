@@ -29,29 +29,36 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.quests_teams_fixes]]
-modId = "architectury"
+modId = "s-lib"
 mandatory = true
+versionRange = "[2.1.0+1.20.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.quests_teams_fixes]]
+modId = "architectury"
+mandatory = false
 versionRange = "[9.2.14,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.quests_teams_fixes]]
 modId = "ftbquests"
-mandatory = true
+mandatory = false
 versionRange = "[2001.4.18,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.quests_teams_fixes]]
 modId = "ftbteams"
-mandatory = true
+mandatory = false
 versionRange = "[2001.3.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.quests_teams_fixes]]
 modId = "ftblibrary"
-mandatory = true
+mandatory = false
 versionRange = "[2001.2.12,)"
 ordering = "AFTER"
 side = "BOTH"

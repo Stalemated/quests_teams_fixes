@@ -24,11 +24,14 @@
     "quests_teams_fixes.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.19.3",
+    "fabricloader": ">=0.18.4",
     "minecraft": "~1.20.1",
     "java": ">=17",
-    "architectury": ">=9.2.14",
     "fabric-api": "*",
+    "s-lib": "2.1.0+1.20.1"
+  },
+  "suggests": {
+    "architectury": ">=9.2.14",
     "ftbquests": ">=2001.4.18",
     "ftbteams": ">=2001.3.2",
     "ftblibrary": ">=2001.2.12"

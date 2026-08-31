@@ -1,4 +1,4 @@
-package com.stalemated.qtfixes.mixin;
+package com.stalemated.qtfixes.mixin.compat.ftbteams;
 
 import dev.ftb.mods.ftblibrary.icon.Color4I;
 import dev.ftb.mods.ftbteams.data.PartyTeam;

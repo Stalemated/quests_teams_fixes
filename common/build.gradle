@@ -11,6 +11,9 @@ dependencies {
     // Architectury API. This is optional, and you can comment it out if you don't need it.
     modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
 
+    // S-Lib common code
+    modImplementation("com.stalemated.lib:s-lib-common:${rootProject.s_lib_version}")
+
     // FTB Library
     modCompileOnly "curse.maven:ftb-library-fabric-438495:$rootProject.ftb_library_id_fabric"
     //FTB Teams

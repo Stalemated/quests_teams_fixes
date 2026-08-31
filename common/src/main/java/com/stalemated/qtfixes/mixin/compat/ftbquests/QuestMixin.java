@@ -1,4 +1,4 @@
-package com.stalemated.qtfixes.mixin;
+package com.stalemated.qtfixes.mixin.compat.ftbquests;
 
 import com.stalemated.qtfixes.completion.QuestCompletionFixer;
 import dev.ftb.mods.ftbquests.events.QuestProgressEventData;

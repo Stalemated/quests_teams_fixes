@@ -1,4 +1,4 @@
-package com.stalemated.qtfixes.mixin;
+package com.stalemated.qtfixes.mixin.compat.ftblibrary;
 
 import dev.ftb.mods.ftblibrary.sidebar.SidebarButtonManager;
 import net.minecraft.resource.ResourceManager;

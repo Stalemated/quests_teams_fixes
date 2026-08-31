@@ -1,4 +1,4 @@
-package com.stalemated.qtfixes.mixin;
+package com.stalemated.qtfixes.mixin.compat.ftbteams;
 
 import com.mojang.brigadier.CommandDispatcher;
 import dev.ftb.mods.ftbteams.data.FTBTeamsCommands;

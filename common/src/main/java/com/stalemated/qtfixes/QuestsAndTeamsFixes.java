@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes;
 
+import com.stalemated.lib.helper.PlatformHelper;
 import com.stalemated.qtfixes.registry.EventRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,8 @@ public final class QuestsAndTeamsFixes {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public static void init() {
-        EventRegistry.register();
+        if (PlatformHelper.INSTANCE.isModLoaded("architectury")) {
+            EventRegistry.register();
+        }
     }
 }
