@@ -40,6 +40,9 @@ dependencies {
     // FTB Quests
     modImplementation "curse.maven:ftb-quests-fabric-438496:$rootProject.ftb_quests_id_fabric"
 
+    // S-Lib
+    modRuntimeOnly "com.stalemated.lib:s-lib-fabric:${rootProject.s_lib_version}"
+
     common(project(path: ':common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }

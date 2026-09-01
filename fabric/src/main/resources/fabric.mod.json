@@ -28,7 +28,7 @@
     "minecraft": "~1.20.1",
     "java": ">=17",
     "fabric-api": "*",
-    "s-lib": "2.1.0+1.20.1"
+    "s_lib": ">=2.1.0+1.20.1"
   },
   "suggests": {
     "architectury": ">=9.2.14",
