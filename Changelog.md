@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1+1.20.1
+
+### New features
+
+- Made the FTB mods as well as Architectury soft dependent
+  - This allows for correct crash handling for modpacks downloaded from Modrinth, where the FTB mods are not present
+- Added S-Lib as a dependency
+
 ## 1.0.0+1.20.1
 
 ### Features
