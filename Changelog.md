@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2+1.20.1
+
+### Fix
+- Fixed mod requesting `s-lib` to be installed for it to load in Forge (correct identifier is `s_lib`)
+- Updated S-Lib dependency to 2.1.1
+
 ## 1.0.1+1.20.1
 
 ### New features
