@@ -2,7 +2,7 @@ package com.stalemated.qtfixes.registry;
 
 import com.stalemated.lib.helper.PlatformHelper;
 import com.stalemated.qtfixes.completion.StuckFlexibleQuests;
-import com.stalemated.qtfixes.migration.PartyMigrationHandler;
+import com.stalemated.qtfixes.migration.ExistingParties;
 
 //? if fabric {
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -18,7 +18,7 @@ public class EventRegistry {
     public static void register() {
         if (areFtbModsLoaded()) {
             //? if fabric {
-            ServerLifecycleEvents.SERVER_STARTED.register(PartyMigrationHandler::onServerStarted);
+            ServerLifecycleEvents.SERVER_STARTED.register(ExistingParties::serverStarted);
             ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> StuckFlexibleQuests.playerJoined(handler.player));
             //?} elif forge {
             /*MinecraftForge.EVENT_BUS.addListener(EventRegistry::onServerStarted);
@@ -35,7 +35,7 @@ public class EventRegistry {
 
     //? if forge {
     /*private static void onServerStarted(ServerStartedEvent event) {
-        PartyMigrationHandler.onServerStarted(event.getServer());
+        ExistingParties.serverStarted(event.getServer());
     }
 
     private static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
