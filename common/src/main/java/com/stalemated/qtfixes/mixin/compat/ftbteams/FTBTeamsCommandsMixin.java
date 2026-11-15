@@ -2,7 +2,7 @@ package com.stalemated.qtfixes.mixin.compat.ftbteams;
 
 import com.mojang.brigadier.CommandDispatcher;
 import dev.ftb.mods.ftbteams.data.FTBTeamsCommands;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class FTBTeamsCommandsMixin {
 
     @Inject(method = "register", at = @At("HEAD"), cancellable = true)
-    private void disableFTBTeamsCommands(CommandDispatcher<ServerCommandSource> dispatcher, CallbackInfo ci) {
+    private void disableFTBTeamsCommands(CommandDispatcher<CommandSourceStack> dispatcher, CallbackInfo ci) {
         ci.cancel();
     }
 }

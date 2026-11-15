@@ -5,8 +5,8 @@ import com.stalemated.qtfixes.QuestsAndTeamsFixes;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.data.PartyTeam;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Collection;
 
@@ -19,7 +19,7 @@ public class PartyMigrationHandler {
         }
 
         boolean dataChanged = false;
-        ServerCommandSource sourceStack = server.getCommandSource();
+        CommandSourceStack sourceStack = server.createCommandSourceStack();
         
         for (Team team : teams) {
             if (team.isPartyTeam() && team instanceof PartyTeam party) {
@@ -38,7 +38,7 @@ public class PartyMigrationHandler {
         QuestMigrator.saveIfChanged(dataChanged);
     }
 
-    private static void disbandParty(PartyTeam party, ServerCommandSource sourceStack) {
+    private static void disbandParty(PartyTeam party, CommandSourceStack sourceStack) {
         try {
             party.forceDisband(sourceStack);
         } catch (CommandSyntaxException e) {
