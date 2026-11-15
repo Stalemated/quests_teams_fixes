@@ -1,7 +1,7 @@
 package com.stalemated.qtfixes.mixin.compat.ftbquests;
 
 import com.stalemated.lib.mixin.RequiresMod;
-import com.stalemated.qtfixes.completion.QuestCompletionFixer;
+import com.stalemated.qtfixes.completion.StuckFlexibleQuests;
 import dev.ftb.mods.ftbquests.events.QuestProgressEventData;
 import dev.ftb.mods.ftbquests.quest.Quest;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,8 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class QuestMixin {
 
     @Inject(method = "onCompleted", at = @At("TAIL"))
-    private void forceDependantCompletion(QuestProgressEventData<?> data, CallbackInfo ci) {
-        Quest quest = (Quest) (Object) this;
-        QuestCompletionFixer.processCompletedQuest(quest, data);
+    private void quests_teams_fixes$completeStuckDependants(QuestProgressEventData<?> data, CallbackInfo ci) {
+        StuckFlexibleQuests.questCompleted((Quest) (Object) this, data.getTeamData());
     }
 }

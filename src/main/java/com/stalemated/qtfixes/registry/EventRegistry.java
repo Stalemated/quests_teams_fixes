@@ -1,7 +1,7 @@
 package com.stalemated.qtfixes.registry;
 
 import com.stalemated.lib.helper.PlatformHelper;
-import com.stalemated.qtfixes.completion.RetroactiveQuestFixer;
+import com.stalemated.qtfixes.completion.StuckFlexibleQuests;
 import com.stalemated.qtfixes.migration.PartyMigrationHandler;
 
 //? if fabric {
@@ -19,7 +19,7 @@ public class EventRegistry {
         if (areFtbModsLoaded()) {
             //? if fabric {
             ServerLifecycleEvents.SERVER_STARTED.register(PartyMigrationHandler::onServerStarted);
-            ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> RetroactiveQuestFixer.onPlayerJoin(handler.player));
+            ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> StuckFlexibleQuests.playerJoined(handler.player));
             //?} elif forge {
             /*MinecraftForge.EVENT_BUS.addListener(EventRegistry::onServerStarted);
             MinecraftForge.EVENT_BUS.addListener(EventRegistry::onPlayerLoggedIn);
@@ -39,7 +39,7 @@ public class EventRegistry {
     }
 
     private static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-        RetroactiveQuestFixer.onPlayerJoin((ServerPlayer) event.getEntity());
+        StuckFlexibleQuests.playerJoined((ServerPlayer) event.getEntity());
     }
     *///?}
 }
