@@ -20,15 +20,20 @@ public final class ExistingParties {
     public static void serverStarted(MinecraftServer server) {
         if (!ActiveFixes.current().disbandPartiesOnStart()) return;
 
-        TeamManager teams = FTBTeamsAPI.api().getManager();
         ServerQuestFile questFile = ServerQuestFile.INSTANCE;
+        if (questFile == null || questFile.getFolder() == null) {
+            QuestsAndTeamsFixes.LOGGER.warn("FTB Quests has not loaded its data yet, so existing parties were not migrated or disbanded");
+            return;
+        }
+
+        TeamManager teams = FTBTeamsAPI.api().getManager();
         CommandSourceStack source = server.createCommandSourceStack();
         boolean progressCopied = false;
 
         for (Team team : teams.getTeams()) {
             if (!(team instanceof PartyTeam party)) continue;
 
-            if (questFile != null) progressCopied |= copyProgressToMembers(party, teams, questFile);
+            progressCopied |= copyProgressToMembers(party, teams, questFile);
             disband(party, source);
         }
 
