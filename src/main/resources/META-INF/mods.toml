@@ -1,0 +1,60 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+issueTrackerURL = "${sources}/issues"
+license = "MIT"
+
+[[mods]]
+modId = "${id}"
+version = "${version}"
+displayName = "${name}"
+authors = "${author}"
+description = '''
+${description}
+'''
+logoFile = "assets/${id}/icon.png"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/quests-teams-fixes"
+
+[[mixins]]
+config = "${id}.mixins.json"
+
+[[dependencies.${id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "s_lib"
+mandatory = true
+versionRange = "[${slib},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "ftbquests"
+mandatory = false
+versionRange = "[2001.4.18,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "ftbteams"
+mandatory = false
+versionRange = "[2001.3.2,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "ftblibrary"
+mandatory = false
+versionRange = "[2001.2.12,)"
+ordering = "AFTER"
+side = "BOTH"
