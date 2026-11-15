@@ -12,6 +12,8 @@ import dev.ftb.mods.ftbteams.data.PartyTeam;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 
+import java.util.List;
+
 public final class ExistingParties {
 
     private ExistingParties() {
@@ -33,27 +35,31 @@ public final class ExistingParties {
         for (Team team : teams.getTeams()) {
             if (!(team instanceof PartyTeam party)) continue;
 
-            progressCopied |= copyProgressToMembers(party, teams, questFile);
+            PartyMigrationPlan<Team> plan = PartyMigrationPlan.forMembers(party.getMembers(), teams::getPlayerTeamForPlayerID);
+            if (!plan.disbands()) {
+                QuestsAndTeamsFixes.LOGGER.warn(
+                        "Kept party {} because members {} have no player team and would lose the party's quest progress",
+                        party.getShortName(), plan.membersWithoutPlayerTeam());
+                continue;
+            }
+
+            if (plan.copiesProgress()) {
+                copyProgress(party, plan.progressReceivers(), questFile);
+                progressCopied = true;
+            }
             disband(party, source);
         }
 
         if (progressCopied) questFile.saveNow();
     }
 
-    private static boolean copyProgressToMembers(PartyTeam party, TeamManager teams, ServerQuestFile questFile) {
-        PartyMigrationPlan<Team> plan = PartyMigrationPlan.forMembers(party.getMembers(), teams::getPlayerTeamForPlayerID);
-        plan.membersWithoutPlayerTeam().forEach(member -> QuestsAndTeamsFixes.LOGGER.warn(
-                "Party {} member {} has no player team, so the party's quest progress was not copied to them",
-                party.getShortName(), member));
-        if (!plan.copiesProgress()) return false;
-
+    private static void copyProgress(PartyTeam party, List<Team> playerTeams, ServerQuestFile questFile) {
         TeamData partyData = questFile.getOrCreateTeamData(party);
-        for (Team playerTeam : plan.progressReceivers()) {
+        for (Team playerTeam : playerTeams) {
             TeamData playerData = questFile.getOrCreateTeamData(playerTeam);
             playerData.mergeData(partyData);
             playerData.markDirty();
         }
-        return true;
     }
 
     private static void disband(PartyTeam party, CommandSourceStack source) {

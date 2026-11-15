@@ -23,37 +23,28 @@ class PartyMigrationPlanTest {
     }
 
     @Test
-    void everyMemberWithAPlayerTeamReceivesThePartyProgress() {
+    void aPartyWhoseMembersAllHaveAPlayerTeamCopiesItsProgressAndIsDisbanded() {
         PartyMigrationPlan<String> plan = planFor(ALICE, BOB);
 
         assertEquals(List.of("alice_team", "bob_team"), plan.progressReceivers());
-        assertEquals(List.of(), plan.membersWithoutPlayerTeam());
         assertTrue(plan.copiesProgress());
+        assertTrue(plan.disbands());
     }
 
     @Test
-    void aMemberWithoutAPlayerTeamIsSkippedWithoutStoppingTheOthers() {
+    void aPartyWithAMemberWithoutAPlayerTeamIsKeptAndCopiesNothing() {
         PartyMigrationPlan<String> plan = planFor(ALICE, GHOST);
 
-        assertEquals(List.of("alice_team"), plan.progressReceivers());
-        assertEquals(List.of(GHOST), plan.membersWithoutPlayerTeam());
-        assertTrue(plan.copiesProgress());
-    }
-
-    @Test
-    void aPartyWhereNobodyHasAPlayerTeamCopiesNothing() {
-        PartyMigrationPlan<String> plan = planFor(GHOST);
-
-        assertEquals(List.of(), plan.progressReceivers());
         assertEquals(List.of(GHOST), plan.membersWithoutPlayerTeam());
         assertFalse(plan.copiesProgress());
+        assertFalse(plan.disbands());
     }
 
     @Test
-    void anEmptyPartyCopiesNothing() {
+    void anEmptyPartyIsDisbandedWithoutCopyingAnything() {
         PartyMigrationPlan<String> plan = planFor();
 
-        assertEquals(List.of(), plan.membersWithoutPlayerTeam());
         assertFalse(plan.copiesProgress());
+        assertTrue(plan.disbands());
     }
 }

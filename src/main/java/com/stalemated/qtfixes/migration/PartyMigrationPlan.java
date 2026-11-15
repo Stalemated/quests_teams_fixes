@@ -20,7 +20,11 @@ record PartyMigrationPlan<T>(List<T> progressReceivers, List<UUID> membersWithou
         return new PartyMigrationPlan<>(List.copyOf(receivers), List.copyOf(withoutPlayerTeam));
     }
 
+    boolean disbands() {
+        return membersWithoutPlayerTeam.isEmpty();
+    }
+
     boolean copiesProgress() {
-        return !progressReceivers.isEmpty();
+        return disbands() && !progressReceivers.isEmpty();
     }
 }
