@@ -1,6 +1,7 @@
 package com.stalemated.qtfixes.mixin.compat.ftbteams;
 
 import com.stalemated.lib.mixin.RequiresMod;
+import com.stalemated.qtfixes.config.ActiveFixes;
 import dev.ftb.mods.ftblibrary.icon.Color4I;
 import dev.ftb.mods.ftbteams.data.PartyTeam;
 import dev.ftb.mods.ftbteams.data.TeamManagerImpl;
@@ -18,6 +19,6 @@ public abstract class TeamManagerImplMixin {
 
     @Inject(method = "createParty(Ljava/util/UUID;Lnet/minecraft/server/level/ServerPlayer;Ljava/lang/String;Ljava/lang/String;Ldev/ftb/mods/ftblibrary/icon/Color4I;)Ldev/ftb/mods/ftbteams/data/PartyTeam;", at = @At("HEAD"), cancellable = true)
     private void quests_teams_fixes$blockPartyCreation(UUID playerId, ServerPlayer player, String name, String description, Color4I color, CallbackInfoReturnable<PartyTeam> cir) {
-        cir.cancel();
+        if (ActiveFixes.current().blockPartyCreation()) cir.cancel();
     }
 }

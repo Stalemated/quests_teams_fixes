@@ -2,6 +2,7 @@ package com.stalemated.qtfixes.migration;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.stalemated.qtfixes.QuestsAndTeamsFixes;
+import com.stalemated.qtfixes.config.ActiveFixes;
 import dev.ftb.mods.ftbquests.quest.ServerQuestFile;
 import dev.ftb.mods.ftbquests.quest.TeamData;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
@@ -17,6 +18,8 @@ public final class ExistingParties {
     }
 
     public static void serverStarted(MinecraftServer server) {
+        if (!ActiveFixes.current().disbandPartiesOnStart()) return;
+
         TeamManager teams = FTBTeamsAPI.api().getManager();
         ServerQuestFile questFile = ServerQuestFile.INSTANCE;
         CommandSourceStack source = server.createCommandSourceStack();

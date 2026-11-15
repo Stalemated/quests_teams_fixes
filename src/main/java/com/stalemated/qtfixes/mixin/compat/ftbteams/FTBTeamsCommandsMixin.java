@@ -2,6 +2,7 @@ package com.stalemated.qtfixes.mixin.compat.ftbteams;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.stalemated.lib.mixin.RequiresMod;
+import com.stalemated.qtfixes.config.ActiveFixes;
 import dev.ftb.mods.ftbteams.data.FTBTeamsCommands;
 import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,6 +16,6 @@ public abstract class FTBTeamsCommandsMixin {
 
     @Inject(method = "register", at = @At("HEAD"), cancellable = true)
     private void quests_teams_fixes$skipFtbTeamsCommands(CommandDispatcher<CommandSourceStack> dispatcher, CallbackInfo ci) {
-        ci.cancel();
+        if (ActiveFixes.current().removeFtbTeamsCommand()) ci.cancel();
     }
 }

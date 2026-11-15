@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes;
 
+import com.stalemated.qtfixes.config.QuestsAndTeamsFixesConfigRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +31,7 @@ implements ModInitializer
     *///?}
 
     private static void init() {
+        QuestsAndTeamsFixesConfigRegistry.register();
         FtbServerHooks.registerIfFtbIsLoaded();
     }
 }
