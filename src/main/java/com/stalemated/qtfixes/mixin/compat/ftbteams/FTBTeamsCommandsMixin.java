@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @RequiresMod("ftbteams")
 @Mixin(value = FTBTeamsCommands.class)
-public class FTBTeamsCommandsMixin {
+public abstract class FTBTeamsCommandsMixin {
 
     @Inject(method = "register", at = @At("HEAD"), cancellable = true)
-    private void disableFTBTeamsCommands(CommandDispatcher<CommandSourceStack> dispatcher, CallbackInfo ci) {
+    private void quests_teams_fixes$skipFtbTeamsCommands(CommandDispatcher<CommandSourceStack> dispatcher, CallbackInfo ci) {
         ci.cancel();
     }
 }

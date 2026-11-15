@@ -1,4 +1,4 @@
-package com.stalemated.qtfixes.registry;
+package com.stalemated.qtfixes;
 
 import com.stalemated.lib.helper.PlatformHelper;
 import com.stalemated.qtfixes.completion.StuckFlexibleQuests;
@@ -14,17 +14,21 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 *///?}
 
-public class EventRegistry {
-    public static void register() {
-        if (areFtbModsLoaded()) {
-            //? if fabric {
-            ServerLifecycleEvents.SERVER_STARTED.register(ExistingParties::serverStarted);
-            ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> StuckFlexibleQuests.playerJoined(handler.player));
-            //?} elif forge {
-            /*MinecraftForge.EVENT_BUS.addListener(EventRegistry::onServerStarted);
-            MinecraftForge.EVENT_BUS.addListener(EventRegistry::onPlayerLoggedIn);
-            *///?}
-        }
+final class FtbServerHooks {
+
+    private FtbServerHooks() {
+    }
+
+    static void registerIfFtbIsLoaded() {
+        if (!areFtbModsLoaded()) return;
+
+        //? if fabric {
+        ServerLifecycleEvents.SERVER_STARTED.register(ExistingParties::serverStarted);
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> StuckFlexibleQuests.playerJoined(handler.player));
+        //?} elif forge {
+        /*MinecraftForge.EVENT_BUS.addListener(FtbServerHooks::onServerStarted);
+        MinecraftForge.EVENT_BUS.addListener(FtbServerHooks::onPlayerLoggedIn);
+        *///?}
     }
 
     private static boolean areFtbModsLoaded() {

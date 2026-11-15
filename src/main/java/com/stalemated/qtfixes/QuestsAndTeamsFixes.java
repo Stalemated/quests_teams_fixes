@@ -1,6 +1,5 @@
 package com.stalemated.qtfixes;
 
-import com.stalemated.qtfixes.registry.EventRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +30,6 @@ implements ModInitializer
     *///?}
 
     private static void init() {
-        EventRegistry.register();
+        FtbServerHooks.registerIfFtbIsLoaded();
     }
 }

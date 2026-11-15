@@ -5,12 +5,12 @@
     "compatibilityLevel": "${mixin_compatibility}",
     "minVersion": "0.8",
     "mixins": [
-        "compat.ftbteams.FTBTeamsCommandsMixin",
         "compat.ftbquests.QuestMixin",
-        "compat.ftblibrary.SidebarButtonManagerMixin",
+        "compat.ftbteams.FTBTeamsCommandsMixin",
         "compat.ftbteams.TeamManagerImplMixin"
     ],
     "client": [
+        "compat.ftblibrary.SidebarButtonManagerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

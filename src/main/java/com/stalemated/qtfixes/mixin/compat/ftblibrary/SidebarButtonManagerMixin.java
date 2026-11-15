@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SidebarButtonManagerMixin {
 
     @Inject(method = "onResourceManagerReload", at = @At("HEAD"), cancellable = true)
-    private void removeFTBTeamsButtons(ResourceManager manager, CallbackInfo ci) {
+    private void quests_teams_fixes$hideAllSidebarButtons(ResourceManager manager, CallbackInfo ci) {
         ci.cancel();
     }
 }

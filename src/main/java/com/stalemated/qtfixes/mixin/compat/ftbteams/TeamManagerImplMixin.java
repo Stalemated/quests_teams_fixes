@@ -14,10 +14,10 @@ import java.util.UUID;
 
 @RequiresMod("ftbteams")
 @Mixin(value = TeamManagerImpl.class)
-public class TeamManagerImplMixin {
+public abstract class TeamManagerImplMixin {
 
     @Inject(method = "createParty(Ljava/util/UUID;Lnet/minecraft/server/level/ServerPlayer;Ljava/lang/String;Ljava/lang/String;Ldev/ftb/mods/ftblibrary/icon/Color4I;)Ldev/ftb/mods/ftbteams/data/PartyTeam;", at = @At("HEAD"), cancellable = true)
-    private void disablePartyCreation(UUID playerId, ServerPlayer player, String name, String description, Color4I color, CallbackInfoReturnable<PartyTeam> cir) {
+    private void quests_teams_fixes$blockPartyCreation(UUID playerId, ServerPlayer player, String name, String description, Color4I color, CallbackInfoReturnable<PartyTeam> cir) {
         cir.cancel();
     }
 }
