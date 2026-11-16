@@ -3,6 +3,9 @@ package com.stalemated.qtfixes.mixin.compat.ftbteams;
 import com.mojang.brigadier.CommandDispatcher;
 import com.stalemated.lib.mixin.RequiresMod;
 import com.stalemated.qtfixes.config.ActiveFixes;
+//? if >=1.21.11 {
+/*import dev.ftb.mods.ftbteams.command.FTBTeamsCommands;
+*///?} else
 import dev.ftb.mods.ftbteams.data.FTBTeamsCommands;
 import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Mixin;

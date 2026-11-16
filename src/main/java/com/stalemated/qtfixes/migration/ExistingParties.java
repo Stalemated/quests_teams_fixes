@@ -22,8 +22,8 @@ public final class ExistingParties {
     public static void serverStarted(MinecraftServer server) {
         if (!ActiveFixes.current().disbandPartiesOnStart()) return;
 
-        ServerQuestFile questFile = ServerQuestFile.INSTANCE;
-        if (questFile == null || questFile.getFolder() == null) {
+        ServerQuestFile questFile = loadedQuestFile();
+        if (questFile == null) {
             QuestsAndTeamsFixes.LOGGER.warn("FTB Quests has not loaded its data yet, so existing parties were not migrated or disbanded");
             return;
         }
@@ -51,6 +51,15 @@ public final class ExistingParties {
         }
 
         if (progressCopied) questFile.saveNow();
+    }
+
+    private static ServerQuestFile loadedQuestFile() {
+        //? if >=1.21.11 {
+        /*return ServerQuestFile.exists() ? ServerQuestFile.getInstance() : null;
+        *///?} else {
+        ServerQuestFile questFile = ServerQuestFile.INSTANCE;
+        return questFile == null || questFile.getFolder() == null ? null : questFile;
+        //?}
     }
 
     private static void copyProgress(PartyTeam party, List<Team> playerTeams, ServerQuestFile questFile) {
