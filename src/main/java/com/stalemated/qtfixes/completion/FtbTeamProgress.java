@@ -21,6 +21,11 @@ record FtbTeamProgress(TeamData team) implements TeamProgress<Quest> {
     }
 
     @Override
+    public boolean isLocked() {
+        return team.isLocked();
+    }
+
+    @Override
     public boolean isCompleted(Quest quest) {
         return team.isCompleted(quest);
     }
@@ -31,25 +36,35 @@ record FtbTeamProgress(TeamData team) implements TeamProgress<Quest> {
     }
 
     @Override
+    public boolean canStartTasks(Quest quest) {
+        return team.canStartTasks(quest);
+    }
+
+    @Override
     public boolean areDependenciesComplete(Quest quest) {
         return quest.areDependenciesComplete(team);
     }
 
     @Override
-    public boolean areTasksFinished(Quest quest) {
-        Collection<Task> tasks = quest.getTasks();
-        return !tasks.isEmpty() && tasks.stream().allMatch(task -> team.getProgress(task.id) >= task.getMaxProgress());
+    public Collection<TaskState> tasks(Quest quest) {
+        return quest.getTasks().stream()
+                .map(task -> new TaskState(team.isCompleted(task) || isFull(task), task.isOptionalForProgression(team)))
+                .toList();
     }
 
     @Override
     public void complete(Quest quest) {
         for (Task task : quest.getTasks()) {
-            if (!team.isCompleted(task)) team.markTaskCompleted(task);
+            if (!team.isCompleted(task) && isFull(task)) team.markTaskCompleted(task);
         }
 
-        // If the quest STILL didn't complete after markTaskCompleted(), force it
-        if (!team.isCompleted(quest)) {
+        // If the quest STILL didn't complete after markTaskCompleted(), force it, but only when FTB counts its tasks as complete
+        if (!team.isCompleted(quest) && quest.isCompletedRaw(team)) {
             quest.onCompleted(new QuestProgressEventData<>(new Date(), team, quest, team.getOnlineMembers(), List.of()));
         }
+    }
+
+    private boolean isFull(Task task) {
+        return team.getProgress(task.id) >= task.getMaxProgress();
     }
 }

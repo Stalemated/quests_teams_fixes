@@ -37,10 +37,18 @@ final class FlexibleQuestCompletion<Q> {
         }
 
         private boolean isStuck() {
-            return team.isFlexible(quest)
+            return !team.isLocked()
+                    && team.isFlexible(quest)
+                    && team.canStartTasks(quest)
                     && team.areDependenciesComplete(quest)
-                    && team.areTasksFinished(quest)
+                    && areRequiredTasksFinished(team.tasks(quest))
                     && !team.isCompleted(quest);
+        }
+
+        private static boolean areRequiredTasksFinished(Collection<TaskState> tasks) {
+            boolean anyRequiredUnfinished = tasks.stream().anyMatch(task -> !task.finished() && !task.optional());
+            boolean anyFinished = tasks.stream().anyMatch(TaskState::finished);
+            return !anyRequiredUnfinished && anyFinished;
         }
     }
 }

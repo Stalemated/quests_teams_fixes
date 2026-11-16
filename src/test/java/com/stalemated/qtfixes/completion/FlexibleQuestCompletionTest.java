@@ -13,6 +13,10 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FlexibleQuestCompletionTest {
+    private static final TaskState REQUIRED_FINISHED = new TaskState(true, false);
+    private static final TaskState REQUIRED_UNFINISHED = new TaskState(false, false);
+    private static final TaskState OPTIONAL_FINISHED = new TaskState(true, true);
+    private static final TaskState OPTIONAL_UNFINISHED = new TaskState(false, true);
 
     @Test
     void aChainOfFinishedFlexibleQuestsCompletesWhenItsFirstDependencyDoes() {
@@ -102,13 +106,62 @@ class FlexibleQuestCompletionTest {
         assertEquals(List.of("first", "second"), book.completions);
     }
 
+    @Test
+    void aLockedTeamGetsNothingCompleted() {
+        QuestBook book = new QuestBook()
+                .quest("root")
+                .stuckQuest("first", "root");
+        book.locked = true;
+
+        book.completeByPlayer("root");
+
+        assertEquals(List.of("root"), book.completions);
+    }
+
+    @Test
+    void aQuestThatCannotStartItsTasksIsNotCompleted() {
+        QuestBook book = new QuestBook()
+                .quest("root")
+                .stuckQuest("excluded_or_waiting_to_repeat", "root");
+        book.cannotStartTasks.add("excluded_or_waiting_to_repeat");
+
+        book.completeByPlayer("root");
+
+        assertEquals(List.of("root"), book.completions);
+    }
+
+    @Test
+    void anUnfinishedOptionalTaskDoesNotHoldTheQuestBack() {
+        QuestBook book = new QuestBook()
+                .quest("root")
+                .questWithTasks("with_optional", List.of(REQUIRED_FINISHED, OPTIONAL_UNFINISHED), "root");
+
+        book.completeByPlayer("root");
+
+        assertEquals(List.of("root", "with_optional"), book.completions);
+    }
+
+    @Test
+    void aQuestWithOnlyOptionalTasksNeedsOneOfThemFinished() {
+        QuestBook book = new QuestBook()
+                .quest("root")
+                .questWithTasks("none_finished", List.of(OPTIONAL_UNFINISHED, OPTIONAL_UNFINISHED), "root")
+                .questWithTasks("one_finished", List.of(OPTIONAL_UNFINISHED, OPTIONAL_FINISHED), "root");
+
+        book.completeByPlayer("root");
+
+        assertEquals(List.of("root", "one_finished"), book.completions);
+    }
+
     private static final class QuestBook implements TeamProgress<String> {
         private final FlexibleQuestCompletion<String> completion = new FlexibleQuestCompletion<>();
         private final Map<String, List<String>> dependencies = new LinkedHashMap<>();
         private final Set<String> flexible = new HashSet<>();
-        private final Set<String> finishedTasks = new HashSet<>();
+        private final Map<String, List<TaskState>> tasks = new LinkedHashMap<>();
+        private final Set<String> cannotStartTasks = new HashSet<>();
         private final Set<String> completed = new HashSet<>();
         private final List<String> completions = new ArrayList<>();
+        private boolean locked;
         private int depth;
         private int deepestCompletion;
 
@@ -123,7 +176,13 @@ class FlexibleQuestCompletionTest {
         QuestBook quest(String quest, boolean isFlexible, boolean tasksFinished, String... dependsOn) {
             dependencies.put(quest, List.of(dependsOn));
             if (isFlexible) flexible.add(quest);
-            if (tasksFinished) finishedTasks.add(quest);
+            tasks.put(quest, List.of(tasksFinished ? REQUIRED_FINISHED : REQUIRED_UNFINISHED));
+            return this;
+        }
+
+        QuestBook questWithTasks(String quest, List<TaskState> questTasks, String... dependsOn) {
+            quest(quest, true, false, dependsOn);
+            tasks.put(quest, questTasks);
             return this;
         }
 
@@ -144,6 +203,11 @@ class FlexibleQuestCompletionTest {
         }
 
         @Override
+        public boolean isLocked() {
+            return locked;
+        }
+
+        @Override
         public boolean isCompleted(String quest) {
             return completed.contains(quest);
         }
@@ -154,13 +218,18 @@ class FlexibleQuestCompletionTest {
         }
 
         @Override
+        public boolean canStartTasks(String quest) {
+            return !cannotStartTasks.contains(quest);
+        }
+
+        @Override
         public boolean areDependenciesComplete(String quest) {
             return completed.containsAll(dependencies.get(quest));
         }
 
         @Override
-        public boolean areTasksFinished(String quest) {
-            return finishedTasks.contains(quest);
+        public Collection<TaskState> tasks(String quest) {
+            return tasks.get(quest);
         }
 
         @Override
