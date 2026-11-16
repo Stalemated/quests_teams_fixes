@@ -16,7 +16,7 @@ val loaderConfiguration = requireNotNull(loaderConfigurations[loader]) {
 }
 
 val ftbMods = listOf("deps.ftb_library", "deps.ftb_teams", "deps.ftb_quests").map { sc.properties.get<String>(it) }
-val architectury = "dev.architectury:architectury-$loader:${sc.properties.get<String>("deps.architectury")}"
+val architectury = sc.properties.getOrNull<String>("deps.architectury")?.let { "dev.architectury:architectury-$loader:$it" }
 
 repositories {
     exclusiveContent {
@@ -38,5 +38,5 @@ dependencies {
         add(loaderConfiguration.compileOnly, it) { isTransitive = false }
         add(loaderConfiguration.runtimeOnly, it) { isTransitive = false }
     }
-    add(loaderConfiguration.runtimeOnly, architectury)
+    architectury?.let { add(loaderConfiguration.runtimeOnly, it) }
 }

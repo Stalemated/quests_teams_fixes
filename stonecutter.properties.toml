@@ -96,3 +96,27 @@ deps.neo_loader = "21.11.45"
 deps.ftb_library = "dev.ftb.mods:ftb-library-neoforge:2111.1.1"
 deps.ftb_teams = "dev.ftb.mods:ftb-teams-neoforge:2111.1.1"
 deps.ftb_quests = "dev.ftb.mods:ftb-quests-neoforge:2111.1.5"
+
+
+["26.1"]
+mod.mc_releases = ["26.1", "26.1.1", "26.1.2"]
+deps.yacl = "3.9.7+26.1"
+mod.ftb_quests_compat = "26.1.2.10"
+mod.ftb_teams_compat = "26.1.2.5"
+mod.ftb_library_compat = "26.1.2.12"
+
+[fabric."26.1"]
+mod.mc_compat = "~26.1"
+deps.fabric_api = "0.155.3+26.1.2"
+deps.modmenu = "18.0.2"
+deps.ftb_library = "dev.ftb.mods:ftb-library-fabric:26.1.2.12"
+deps.ftb_teams = "dev.ftb.mods:ftb-teams-fabric:26.1.2.5"
+deps.ftb_quests = "dev.ftb.mods:ftb-quests-fabric:26.1.2.10"
+
+[neoforge."26.1"]
+mod.mc_releases = ["26.1.2"]
+mod.mc_compat = "[26.1.2, 26.2)"
+deps.neo_loader = "26.1.2.126"
+deps.ftb_library = "dev.ftb.mods:ftb-library-neoforge:26.1.2.12"
+deps.ftb_teams = "dev.ftb.mods:ftb-teams-neoforge:26.1.2.5"
+deps.ftb_quests = "dev.ftb.mods:ftb-quests-neoforge:26.1.2.10"
