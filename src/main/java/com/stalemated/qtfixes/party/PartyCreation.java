@@ -3,6 +3,7 @@ package com.stalemated.qtfixes.party;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.stalemated.qtfixes.config.ActiveFixes;
+import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import net.minecraft.network.chat.Component;
 
 public final class PartyCreation {
@@ -14,5 +15,9 @@ public final class PartyCreation {
 
     public static void checkAllowed() throws CommandSyntaxException {
         if (ActiveFixes.current().blockPartyCreation()) throw BLOCKED.create();
+    }
+
+    public static void restrictFtbTeamsToApi() {
+        if (ActiveFixes.current().blockPartyCreation()) FTBTeamsAPI.api().setPartyCreationFromAPIOnly(true);
     }
 }
