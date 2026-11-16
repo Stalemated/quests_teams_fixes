@@ -28,10 +28,12 @@ public class QuestsAndTeamsFixesConfig {
         @Comment("Removes the /ftbteams command. Needs a server restart.")
         public boolean removeFtbTeamsCommand = true;
 
+        //? if <1.21.1 {
         @Comment("""
                 Completes FLEXIBLE quests whose tasks were finished before their dependencies, also when a player joins.
                 FTB Quests 2001.4.22+ already has this fix bundled-in.""")
         public boolean fixFlexibleQuests = true;
+        //?}
     }
 
     public static class Client {

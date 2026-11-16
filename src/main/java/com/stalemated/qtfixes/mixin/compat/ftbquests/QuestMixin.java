@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes.mixin.compat.ftbquests;
 
+//? if <1.21.1 {
 import com.stalemated.lib.mixin.RequiresMod;
 import com.stalemated.qtfixes.completion.StuckFlexibleQuests;
 import dev.ftb.mods.ftbquests.events.QuestProgressEventData;
@@ -18,3 +19,4 @@ public abstract class QuestMixin {
         StuckFlexibleQuests.questCompleted((Quest) (Object) this, data.getTeamData());
     }
 }
+//?}

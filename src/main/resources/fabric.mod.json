@@ -31,8 +31,8 @@
         "s_lib": ">=${slib}"
     },
     "suggests": {
-        "ftbquests": ">=2001.4.18",
-        "ftbteams": ">=2001.3.2",
-        "ftblibrary": ">=2001.2.12"
+        "ftbquests": ">=${ftb_quests}",
+        "ftbteams": ">=${ftb_teams}",
+        "ftblibrary": ">=${ftb_library}"
     }
 }

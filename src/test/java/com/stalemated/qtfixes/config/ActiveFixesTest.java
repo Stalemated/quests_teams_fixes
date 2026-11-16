@@ -14,6 +14,7 @@ class ActiveFixesTest {
         assertTrue(fixes.blockPartyCreation());
         assertTrue(fixes.disbandPartiesOnStart());
         assertTrue(fixes.removeFtbTeamsCommand());
+        //? if <1.21.1
         assertTrue(fixes.fixFlexibleQuests());
         assertTrue(fixes.hideSidebarButtons());
     }
@@ -24,6 +25,7 @@ class ActiveFixesTest {
         config.server.blockPartyCreation = false;
         config.server.disbandPartiesOnStart = false;
         config.server.removeFtbTeamsCommand = false;
+        //? if <1.21.1
         config.server.fixFlexibleQuests = false;
         config.client.hideSidebarButtons = false;
 
@@ -32,6 +34,7 @@ class ActiveFixesTest {
         assertFalse(fixes.blockPartyCreation());
         assertFalse(fixes.disbandPartiesOnStart());
         assertFalse(fixes.removeFtbTeamsCommand());
+        //? if <1.21.1
         assertFalse(fixes.fixFlexibleQuests());
         assertFalse(fixes.hideSidebarButtons());
     }

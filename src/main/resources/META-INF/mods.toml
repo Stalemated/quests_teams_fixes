@@ -41,20 +41,20 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "ftbquests"
 mandatory = false
-versionRange = "[2001.4.18,)"
+versionRange = "[${ftb_quests},)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${id}]]
 modId = "ftbteams"
 mandatory = false
-versionRange = "[2001.3.2,)"
+versionRange = "[${ftb_teams},)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${id}]]
 modId = "ftblibrary"
 mandatory = false
-versionRange = "[2001.2.12,)"
+versionRange = "[${ftb_library},)"
 ordering = "AFTER"
 side = "BOTH"

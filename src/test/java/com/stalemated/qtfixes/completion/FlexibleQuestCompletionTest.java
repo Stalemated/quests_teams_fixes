@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes.completion;
 
+//? if <1.21.1 {
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -243,3 +244,4 @@ class FlexibleQuestCompletionTest {
         }
     }
 }
+//?}

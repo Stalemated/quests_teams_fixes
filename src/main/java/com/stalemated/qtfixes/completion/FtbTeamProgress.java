@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes.completion;
 
+//? if <1.21.1 {
 import dev.ftb.mods.ftbquests.events.QuestProgressEventData;
 import dev.ftb.mods.ftbquests.quest.ProgressionMode;
 import dev.ftb.mods.ftbquests.quest.Quest;
@@ -68,3 +69,4 @@ record FtbTeamProgress(TeamData team) implements TeamProgress<Quest> {
         return team.getProgress(task.id) >= task.getMaxProgress();
     }
 }
+//?}

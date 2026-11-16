@@ -18,9 +18,11 @@ public record ActiveFixes(QuestsAndTeamsFixesConfig config) {
         return config.server.removeFtbTeamsCommand;
     }
 
+    //? if <1.21.1 {
     public boolean fixFlexibleQuests() {
         return config.server.fixFlexibleQuests;
     }
+    //?}
 
     public boolean hideSidebarButtons() {
         return config.client.hideSidebarButtons;

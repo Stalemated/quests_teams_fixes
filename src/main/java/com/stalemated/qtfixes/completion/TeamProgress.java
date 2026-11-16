@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes.completion;
 
+//? if <1.21.1 {
 import java.util.Collection;
 
 interface TeamProgress<Q> {
@@ -19,3 +20,4 @@ interface TeamProgress<Q> {
 
     void complete(Q quest);
 }
+//?}

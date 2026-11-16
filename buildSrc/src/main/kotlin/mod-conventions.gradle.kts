@@ -71,6 +71,9 @@ tasks {
             }
             sc.properties.getOrNull<String>("mod.neoforge_compat")?.let { put("neoforge", it) }
             sc.properties.getOrNull<String>("deps.slib")?.let { put("slib", it) }
+            listOf("ftb_quests", "ftb_teams", "ftb_library").forEach { ftbMod ->
+                sc.properties.getOrNull<String>("mod.${ftbMod}_compat")?.let { put(ftbMod, it) }
+            }
         }
 
         inputs.properties(modMetadata)

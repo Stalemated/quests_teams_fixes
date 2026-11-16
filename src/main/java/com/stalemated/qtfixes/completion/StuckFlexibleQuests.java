@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes.completion;
 
+//? if <1.21.1 {
 import com.stalemated.qtfixes.config.ActiveFixes;
 import dev.ftb.mods.ftbquests.quest.Quest;
 import dev.ftb.mods.ftbquests.quest.ServerQuestFile;
@@ -36,3 +37,4 @@ public final class StuckFlexibleQuests {
         COMPLETION.completeStuckQuests(quests, new FtbTeamProgress(team));
     }
 }
+//?}

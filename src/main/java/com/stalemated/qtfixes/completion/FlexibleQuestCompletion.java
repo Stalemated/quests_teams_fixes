@@ -1,5 +1,6 @@
 package com.stalemated.qtfixes.completion;
 
+//? if <1.21.1 {
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
@@ -52,3 +53,4 @@ final class FlexibleQuestCompletion<Q> {
         }
     }
 }
+//?}

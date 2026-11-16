@@ -7,6 +7,7 @@ mod.description = "Completely disables FTB Teams, disbands any existing teams, a
 mod.author = "Stalemated"
 mod.sources = "https://github.com/Stalemated/quests_teams_fixes"
 mod.environment = "both"
+mod.neoforge_compat = "[20.4.70-beta,)"
 
 deps.fabric_loader = "0.18.4"
 loomx.loom_version = "1.18-SNAPSHOT"
@@ -29,18 +30,45 @@ publish.optional = []
 mod.mc_releases = ["1.20.1"]
 deps.yacl = "3.6.6+1.20.1"
 deps.architectury = "9.2.14"
+mod.ftb_quests_compat = "2001.4.18"
+mod.ftb_teams_compat = "2001.3.2"
+mod.ftb_library_compat = "2001.2.12"
 
 [fabric."1.20.1"]
 mod.mc_compat = "~1.20.1"
 deps.fabric_api = "0.92.2+1.20.1"
 deps.modmenu = "7.2.2"
-deps.ftb_library = "ftb-library-fabric-438495:8226926"
-deps.ftb_teams = "ftb-teams-fabric-438497:7499808"
-deps.ftb_quests = "ftb-quests-fabric-438496:7608803"
+deps.ftb_library = "curse.maven:ftb-library-fabric-438495:8226926"
+deps.ftb_teams = "curse.maven:ftb-teams-fabric-438497:7499808"
+deps.ftb_quests = "curse.maven:ftb-quests-fabric-438496:7608803"
 
 [forge."1.20.1"]
 mod.mc_compat = "[1.20.1,)"
 deps.forge_loader = "1.20.1-47.4.10"
-deps.ftb_library = "ftb-library-forge-404465:8226927"
-deps.ftb_teams = "ftb-teams-forge-404468:7499810"
-deps.ftb_quests = "ftb-quests-forge-289412:7608804"
+deps.ftb_library = "curse.maven:ftb-library-forge-404465:8226927"
+deps.ftb_teams = "curse.maven:ftb-teams-forge-404468:7499810"
+deps.ftb_quests = "curse.maven:ftb-quests-forge-289412:7608804"
+
+
+["1.21.1"]
+mod.mc_releases = ["1.21.1"]
+deps.yacl = "3.8.1+1.21.1"
+deps.architectury = "13.0.11"
+mod.ftb_quests_compat = "2101.1.38"
+mod.ftb_teams_compat = "2101.1.12"
+mod.ftb_library_compat = "2101.1.39"
+
+[fabric."1.21.1"]
+mod.mc_compat = "~1.21.1"
+deps.fabric_api = "0.116.17+1.21.1"
+deps.modmenu = "11.0.5"
+deps.ftb_library = "dev.ftb.mods:ftb-library-fabric:2101.1.39"
+deps.ftb_teams = "dev.ftb.mods:ftb-teams-fabric:2101.1.12"
+deps.ftb_quests = "dev.ftb.mods:ftb-quests-fabric:2101.1.38"
+
+[neoforge."1.21.1"]
+mod.mc_compat = "[1.21.1]"
+deps.neo_loader = "21.1.251"
+deps.ftb_library = "dev.ftb.mods:ftb-library-neoforge:2101.1.39"
+deps.ftb_teams = "dev.ftb.mods:ftb-teams-neoforge:2101.1.12"
+deps.ftb_quests = "dev.ftb.mods:ftb-quests-neoforge:2101.1.38"

@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.api.ModInitializer;
 //?} elif forge {
 /*import net.minecraftforge.fml.common.Mod;
+*///?} elif neoforge {
+/*import net.neoforged.fml.common.Mod;
 *///?}
 
-//? if forge {
+//? if forge || neoforge {
 /*@Mod(QuestsAndTeamsFixes.MOD_ID)
 *///?}
 public final class QuestsAndTeamsFixes //? if fabric
@@ -24,7 +26,7 @@ implements ModInitializer
     public void onInitialize() {
         init();
     }
-    //?} elif forge {
+    //?} elif forge || neoforge {
     /*public QuestsAndTeamsFixes() {
         init();
     }
